@@ -61,3 +61,35 @@ const activeElem = function () {
 }
 
 addEventOnElem(window, "scroll", activeElem);
+
+// Email Verification
+
+const contactForm = document.getElementById('contactForm'),
+      contactMessage = document.getElementById('contact-message')
+
+const sendEmail = (e) =>{
+      e.preventDefault()
+      
+      // serviceID - templateID - #form - publicKey
+      emailjs.sendForm('service_50pa1rg','template_j8d1efs','#contactForm','PvBAbtUaEubyMRjpV')
+     
+      .then(() =>{
+
+      // Show sent message
+        contactMessage.textContent = 'Message sent successfully ✅'
+
+   // Remove message after five seconds
+        setTimeout(()=>{
+            contactMessage.textContent = ''
+        }, 5000)
+
+        // clear input fields
+        contactForm.reset()
+
+      }, () =>{
+        //show error message
+        contactMessage.textContent = 'Message not sent (service error) ❌'
+      })
+}
+
+contactForm.addEventListener('submit', sendEmail)

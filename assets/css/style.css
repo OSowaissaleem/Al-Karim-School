@@ -1449,6 +1449,18 @@ padding: 10px 20px;
 border-radius: var(--radius-5);
 overflow: hidden;
 }
+.contact_btn::before {
+  inset: 0;
+  background-image: var(--gradient);
+  z-index: -1;
+  border-radius: inherit;
+  transform: translateX(-100%);
+  transition: var(--transition-2);
+}
+
+.contact_btn:is(:hover, :focus)::before { transform: translateX(0); }
+
+
 
 @media screen and (max-width: 600px) {
     .contact_conatainer {
